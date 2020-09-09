@@ -1,7 +1,7 @@
 # laigeRenderer
 A DirectX 11 library that can render a Rainbow Track in 1 draw call.
 
-<img src="/assets/laigeRenderer.png"/>
+<img src="https://raw.githubusercontent.com/bbb0x/laigeRenderer/master/assets/laigerenderer.png"/>
 
 
 Telemetry applications analyzing race data usually use a Rainbow Track to show precise data of a lap and to hint in what part of a track it is possible to gain time.
