@@ -1,10 +1,9 @@
-packages
-.vs
-x64
-LaigeWPFTest/bin/
-LaigeWPFTest/obj/
-laige/x64/
-laige/debug/
-laige/release/
-laige/build/
+packages/
+.vs/
+x64/
+bin/
+obj
+debug/
+release/
+build/
 # Enable IDE files for now. 
