@@ -131,6 +131,7 @@ namespace DxManager
     {
         m_context->Release();
         m_device->Release();
+        if(m_graphicsAnalysis)
         m_graphicsAnalysis->Release();
         m_pRenderTargetView->Release();    
     }
@@ -141,13 +142,10 @@ namespace DxManager
 
         void InitRenderTarget(void* renderTarget)
         {
-           
-
             IUnknown* pUnk = (IUnknown*)renderTarget;
 
             IDXGIResource* pDXGIResource;
             Utils::ThrowIfFailed(pUnk->QueryInterface(__uuidof(IDXGIResource), (void**)&pDXGIResource));
-
 
             HANDLE sharedHandle;
             Utils::ThrowIfFailed(pDXGIResource->GetSharedHandle(&sharedHandle));
@@ -157,7 +155,6 @@ namespace DxManager
             IUnknown* tempResource11;
             Utils::ThrowIfFailed(m_device->OpenSharedResource(sharedHandle, __uuidof(ID3D11Resource), (void**)(&tempResource11)));
        
-
             ID3D11Texture2D* pOutputResource;
             Utils::ThrowIfFailed(tempResource11->QueryInterface(__uuidof(ID3D11Texture2D), (void**)(&pOutputResource)));
        
@@ -169,7 +166,6 @@ namespace DxManager
             rtDesc.Texture2D.MipSlice = 0;
 
             Utils::ThrowIfFailed(m_device->CreateRenderTargetView(pOutputResource, &rtDesc, &m_pRenderTargetView));
-
 
             D3D11_TEXTURE2D_DESC outputResourceDesc;
             pOutputResource->GetDesc(&outputResourceDesc);

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:LaigeWPFTest"
              xmlns:dx="clr-namespace:Microsoft.Wpf.Interop.DirectX;assembly=Microsoft.Wpf.Interop.DirectX"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp">
+        Title="MainWindow" Height="450" Width="800" KeyDown="Window_KeyDown" KeyUp="Window_KeyUp" Closing="Window_Closing">
     <Grid x:Name="host">
         <Rectangle Fill="Black"/>
 

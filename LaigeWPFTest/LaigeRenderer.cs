@@ -42,6 +42,9 @@ namespace LaigeWPFTest
         [DllImport("laige.dll")]
         static extern void _DrawDebugTriangle();
 
+        [DllImport("laige.dll")]
+        static extern void _Release();
+
         private D3D11Image d3d11Image;
         private bool enableGraphicsDebugger;
     
@@ -110,6 +113,11 @@ namespace LaigeWPFTest
 
             var tt = new LaigeRect() { Height = height, Width = width };
             _SetScreenMatrix(new LaigeRect[] { tt });
+        }
+
+        public void Release()
+        {
+            _Release();
         }
 
         [StructLayout(LayoutKind.Sequential)]

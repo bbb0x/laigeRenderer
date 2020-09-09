@@ -154,6 +154,11 @@ namespace LaigeWPFTest
      
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            renderer.Release();
+        }
+
         private void Draw()
         {
             if (renderer == null)
