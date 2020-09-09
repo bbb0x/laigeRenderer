@@ -1,0 +1,9 @@
+packages
+x64
+.vs
+bin
+obj
+debug
+release
+build
+# Enable IDE files for now. 
