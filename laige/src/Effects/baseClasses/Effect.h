@@ -59,8 +59,8 @@ public:
 	virtual void Update(void* data, uint32_t length, uint32_t vertexLength, uint32_t byteWidth) = 0;
 	virtual void Draw() = 0;
 	
-	void* GetMappedResourceValue(std::string& name) const;
-	void SetMappedResourceValue(std::string& name);
+	void* GetMappedResourceValue(const std::string& name) const;
+	void SetMappedResourceValue(const std::string& name);
 
 
 
@@ -74,7 +74,7 @@ private:
 protected:
 
 	template <typename T>
-	void CreateMappedResource(std::string& name, std::shared_ptr<T> initialValue, int shaderTypes)
+	void CreateMappedResource(const std::string& name, std::shared_ptr<T> initialValue, int shaderTypes)
 	{
 		D3D11_BUFFER_DESC bd = { 0 };
 

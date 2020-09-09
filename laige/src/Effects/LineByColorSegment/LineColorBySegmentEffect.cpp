@@ -5,11 +5,7 @@
 #include "../InputLayouts/Ip_ColorPosition.h"
 #include "../../DxManager.h"
 
-
-std::string res_matrix = "matrix";
-
-
-
+const std::string res_matrix = "matrix";
 
 void LineColorBySegmentEffect::Load()
 {
@@ -17,18 +13,14 @@ void LineColorBySegmentEffect::Load()
 	{
 		{ "POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 }, // https://docs.microsoft.com/en-gb/windows/win32/api/dxgiformat/ne-dxgiformat-dxgi_format
 		{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 8, D3D11_INPUT_PER_VERTEX_DATA, 0},
-		{ "THICKNESS", 0, DXGI_FORMAT_R32_FLOAT, 0,24, D3D11_INPUT_PER_VERTEX_DATA, 0} 
-
-};
-
+		{ "THICKNESS", 0, DXGI_FORMAT_R32_FLOAT, 0,24, D3D11_INPUT_PER_VERTEX_DATA, 0}
+	};
 
 	LoadVertexShader("vs_LineColorBySegmentEffect.cso", c_inputElementDesc, _countof(c_inputElementDesc));
 	LoadGeometryShader("gs_LineColorBySegmentEffect.cso");
 	LoadPixelShader("ps_LineColorBySegmentEffect.cso");
 
 	CreateMappedResource<Matrices>(res_matrix, nullptr, ShaderType::Vertex | ShaderType::Geometry);
-
-
 }
 
 void LineColorBySegmentEffect::Update(void* data, uint32_t length, uint32_t vertexLength, uint32_t byteWidth)
@@ -42,9 +34,7 @@ void LineColorBySegmentEffect::Draw()
 	context->IASetInputLayout(m_inputLayout.Get());
 	context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_LINELIST_ADJ);
 
-
 	SetShaders();
-
 
 	UINT strides = sizeof(lp_ColorPosition);
 	UINT offsets = 0;
@@ -59,21 +49,16 @@ void LineColorBySegmentEffect::SetMatrices(const TwoDMatrix &screenMatrix, const
 {
 	Matrices* m = reinterpret_cast<Matrices*> (GetMappedResourceValue(res_matrix));
 
-
 	if (valueMatrix)
 	{
 		m->valueMatrix = *valueMatrix;
-
 	}
 	else
 	{
 		m->valueMatrix.SetInvalid();
 	}
 
-
 	m->screenMatrix = screenMatrix;
-
-
 	SetMappedResourceValue(res_matrix);
 }
 

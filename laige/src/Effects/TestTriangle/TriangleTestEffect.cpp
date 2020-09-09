@@ -41,8 +41,6 @@ void TriangleTestEffect::Draw()
 
 	SetShaders();
 
-
-
 	UINT strides = sizeof(lp_testTriangle);
 	UINT offsets = 0;
 

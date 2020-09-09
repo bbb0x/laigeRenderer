@@ -36,7 +36,6 @@ Effect::~Effect()
 void Effect::LoadVertexShader(std::string&& name, const D3D11_INPUT_ELEMENT_DESC *inputDescription, uint32_t inputCount)
 {
 
-
 	auto blob = IO::ReadFile(std::move(name)); // https://stackoverflow.com/questions/35652953/why-c-lvalue-objects-cant-be-bound-to-rvalue-references
 
 	auto c = DxManager::GetDeviceContext();
@@ -51,7 +50,6 @@ void Effect::LoadVertexShader(std::string&& name, const D3D11_INPUT_ELEMENT_DESC
 		device->CreateInputLayout(inputDescription, inputCount,
 			blob.data(), blob.size(),
 			m_inputLayout.ReleaseAndGetAddressOf()));
-
 }
 
 void Effect::LoadGeometryShader(std::string&& name)
@@ -72,8 +70,6 @@ void Effect::LoadPixelShader(std::string&& name)
 	Utils::ThrowIfFailed(
 		device->CreatePixelShader(blob.data(), blob.size(),
 			nullptr, m_pixelShader.ReleaseAndGetAddressOf()));
-
-
 }
 
 void Effect::SetShaders()
@@ -141,24 +137,21 @@ void Effect::SetVSMappedResource(ComPtr<ID3D11Buffer> buf, uint32_t slot)
 {
 	auto context = DxManager::GetDeviceContext();
 	context->VSSetConstantBuffers(slot, 1, buf.GetAddressOf());
-
 }
 
 void Effect::SetGSMappedResource(ComPtr<ID3D11Buffer> buf, uint32_t slot)
 {
 	auto context = DxManager::GetDeviceContext();
 	context->GSSetConstantBuffers(slot, 1, buf.GetAddressOf());
-
 }
 
 void Effect::SetPSMappedResource(ComPtr<ID3D11Buffer> buf, uint32_t slot)
 {
 	auto context = DxManager::GetDeviceContext();
 	context->PSSetConstantBuffers(slot, 1, buf.GetAddressOf());
-
 }
 
-void Effect::SetMappedResourceValue(std::string& name)
+void Effect::SetMappedResourceValue(const std::string& name)
 {
     auto context = DxManager::GetDeviceContext();
 	MappedResourceEntry ptr = m_mappedResources.find(name)->second;
@@ -166,7 +159,7 @@ void Effect::SetMappedResourceValue(std::string& name)
 }
 
 
-void* Effect::GetMappedResourceValue(std::string& name) const
+void* Effect::GetMappedResourceValue(const std::string& name) const
 {
     auto context = DxManager::GetDeviceContext();
     D3D11_MAPPED_SUBRESOURCE mappedResource;
@@ -180,7 +173,6 @@ void Effect::DrawVertices(uint32_t count, uint32_t start) const
 {
 	auto context = DxManager::GetDeviceContext();
 	context->Draw(count, start);
-
 }
 
 

@@ -16,11 +16,10 @@ struct lp_ColorPosition
 	float Thickness;
 
 	lp_ColorPosition() noexcept :Color(), Thickness(0)
-	{
-	}
+	{}
 	
 	lp_ColorPosition(LinePoint& lp) noexcept :Position(lp.Position), Color(lp.PointColor), Thickness(lp.Thickness)
-	{
+	{}
 
-	}
+	
 };
