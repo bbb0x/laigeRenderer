@@ -40,12 +40,12 @@ void LineColorBySegmentEffect::Draw()
 	UINT offsets = 0;
 
 	const auto buf = m_inputBuffer.Get();
-	context->IASetVertexBuffers(0, 1,&buf, &strides, &offsets);
+	context->IASetVertexBuffers(0, 1, &buf, &strides, &offsets);
 
 	DrawVertices(m_vertexLength, 0);
 }
 
-void LineColorBySegmentEffect::SetMatrices(const TwoDMatrix &screenMatrix, const TwoDMatrix* valueMatrix)
+void LineColorBySegmentEffect::SetMatrices(const TwoDMatrix& screenMatrix, const TwoDMatrix* valueMatrix)
 {
 	Matrices* m = reinterpret_cast<Matrices*> (GetMappedResourceValue(res_matrix));
 
@@ -61,4 +61,3 @@ void LineColorBySegmentEffect::SetMatrices(const TwoDMatrix &screenMatrix, const
 	m->screenMatrix = screenMatrix;
 	SetMappedResourceValue(res_matrix);
 }
-

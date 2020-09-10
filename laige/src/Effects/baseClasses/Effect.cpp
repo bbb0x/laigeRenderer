@@ -5,8 +5,6 @@
 #include "../../DxManager.h"
 #include "../../IO.h"
 
-
-
 Effect::Effect()
 {
 	m_vertexLength = 0;
@@ -29,21 +27,17 @@ Effect::~Effect()
 
 	if (m_inputLayout)
 		m_inputLayout->Release();
-
-
 }
 
-void Effect::LoadVertexShader(std::string&& name, const D3D11_INPUT_ELEMENT_DESC *inputDescription, uint32_t inputCount)
+void Effect::LoadVertexShader(std::string&& name, const D3D11_INPUT_ELEMENT_DESC* inputDescription, uint32_t inputCount)
 {
-
 	auto blob = IO::ReadFile(std::move(name)); // https://stackoverflow.com/questions/35652953/why-c-lvalue-objects-cant-be-bound-to-rvalue-references
 
 	auto c = DxManager::GetDeviceContext();
 	auto device = DxManager::GetDevice();
-    Utils::ThrowIfFailed(
+	Utils::ThrowIfFailed(
 		device->CreateVertexShader(blob.data(), blob.size(),
 			nullptr, m_vertexShader.ReleaseAndGetAddressOf()));
-
 
 	// Tell DirectX how the vertex-in data looks like.
 	Utils::ThrowIfFailed(
@@ -60,7 +54,6 @@ void Effect::LoadGeometryShader(std::string&& name)
 	Utils::ThrowIfFailed(
 		device->CreateGeometryShader(blob.data(), blob.size(),
 			nullptr, m_geometryShader.ReleaseAndGetAddressOf()));
-
 }
 
 void Effect::LoadPixelShader(std::string&& name)
@@ -97,7 +90,7 @@ void Effect::SetShaders()
 
 		if (shaderT & ShaderType::Vertex)
 			SetVSMappedResource(value.Buffer, i);
-	    if (shaderT & ShaderType::Geometry)
+		if (shaderT & ShaderType::Geometry)
 			SetGSMappedResource(value.Buffer, i);
 		if (shaderT & ShaderType::Pixel)
 			SetPSMappedResource(value.Buffer, i);
@@ -105,9 +98,6 @@ void Effect::SetShaders()
 		++i;
 	}
 }
-
-
-
 
 void Effect::UpdateInputData(void* data, uint32_t length, uint32_t vertexLength, uint32_t byteWidth, uint32_t stride)
 {
@@ -123,7 +113,6 @@ void Effect::UpdateInputData(void* data, uint32_t length, uint32_t vertexLength,
 	bufferDesc.Usage = D3D11_USAGE_IMMUTABLE;
 	bufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	bufferDesc.StructureByteStride = stride;
-
 
 	Utils::ThrowIfFailed(
 		DxManager::GetDevice()->CreateBuffer(&bufferDesc, &initialData,
@@ -153,20 +142,19 @@ void Effect::SetPSMappedResource(ComPtr<ID3D11Buffer> buf, uint32_t slot)
 
 void Effect::SetMappedResourceValue(const std::string& name)
 {
-    auto context = DxManager::GetDeviceContext();
+	auto context = DxManager::GetDeviceContext();
 	MappedResourceEntry ptr = m_mappedResources.find(name)->second;
-    context->Unmap(ptr.Buffer.Get(), 0);
+	context->Unmap(ptr.Buffer.Get(), 0);
 }
-
 
 void* Effect::GetMappedResourceValue(const std::string& name) const
 {
-    auto context = DxManager::GetDeviceContext();
-    D3D11_MAPPED_SUBRESOURCE mappedResource;
+	auto context = DxManager::GetDeviceContext();
+	D3D11_MAPPED_SUBRESOURCE mappedResource;
 
 	MappedResourceEntry ptr = m_mappedResources.find(name)->second;
-    auto result = context->Map(ptr.Buffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
-    return mappedResource.pData;
+	auto result = context->Map(ptr.Buffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+	return mappedResource.pData;
 }
 
 void Effect::DrawVertices(uint32_t count, uint32_t start) const
@@ -174,6 +162,3 @@ void Effect::DrawVertices(uint32_t count, uint32_t start) const
 	auto context = DxManager::GetDeviceContext();
 	context->Draw(count, start);
 }
-
-
-

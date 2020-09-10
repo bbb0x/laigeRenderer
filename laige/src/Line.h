@@ -11,6 +11,5 @@ struct Line
 
 	Line(uint32_t length, LinePoint* points) noexcept : Length(length), Points(points)
 	{
-
 	}
 };

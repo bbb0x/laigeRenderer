@@ -3,12 +3,10 @@
 
 #pragma once
 
-
 #include <cinttypes>
 #include <cstdio>
 #include "Color.h"
 #include "Point.h"
-
 
 struct LinePoint
 {
@@ -18,6 +16,6 @@ struct LinePoint
 
 	LinePoint() noexcept : Position(Point()), PointColor(Color()), Thickness(0)
 	{}
-	LinePoint(Point& p, Color& color, float thickness) noexcept: Position(p), PointColor(color), Thickness(thickness)
+	LinePoint(Point& p, Color& color, float thickness) noexcept : Position(p), PointColor(color), Thickness(thickness)
 	{}
 };

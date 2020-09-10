@@ -15,7 +15,6 @@ void TriangleTestEffect::Load()
 	};
 	LoadVertexShader("vs_triangletest.cso", s_inputElementDesc, _countof(s_inputElementDesc));
 	LoadPixelShader("ps_triangletest.cso");
-
 }
 
 void TriangleTestEffect::Update(void* data, uint32_t length, uint32_t vertexLength, uint32_t byteWidth)
@@ -33,7 +32,7 @@ void TriangleTestEffect::Update(void* data, uint32_t length, uint32_t vertexLeng
 	UpdateInputData(s_vertexData, 3, vertexLength, sizeof(s_vertexData), sizeof(lp_testTriangle));
 }
 
-void TriangleTestEffect::Draw() 
+void TriangleTestEffect::Draw()
 {
 	auto context = DxManager::GetDeviceContext();
 	context->IASetInputLayout(m_inputLayout.Get());

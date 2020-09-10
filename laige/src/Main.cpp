@@ -7,7 +7,5 @@
 
 BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD fwdReason, LPVOID lpvReserved)
 {
-    return TRUE;
+	return TRUE;
 }
-
-

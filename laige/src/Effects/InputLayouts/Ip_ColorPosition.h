@@ -11,15 +11,13 @@ using namespace DirectX;
 // 1 class per input. Identical to LinePoint so we prepare a constructor for it.
 struct lp_ColorPosition
 {
-	Point Position;    
-	Color Color;   
+	Point Position;
+	Color Color;
 	float Thickness;
 
 	lp_ColorPosition() noexcept :Color(), Thickness(0)
 	{}
-	
+
 	lp_ColorPosition(LinePoint& lp) noexcept :Position(lp.Position), Color(lp.PointColor), Thickness(lp.Thickness)
 	{}
-
-	
 };

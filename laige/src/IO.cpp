@@ -19,6 +19,5 @@ namespace IO
 		infile.read(&buffer[0], length);
 
 		return buffer;
-
 	}
 }

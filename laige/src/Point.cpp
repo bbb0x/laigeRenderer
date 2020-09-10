@@ -5,30 +5,30 @@
 
 void Point::operator+=(Point const& other)
 {
-    x += other.x;
-    y += other.y;
+	x += other.x;
+	y += other.y;
 }
 
 void Point::operator-=(Point const& other)
 {
-    x -= other.x;
-    y -= other.y;
+	x -= other.x;
+	y -= other.y;
 }
 
 Point Point::operator+(Point const& a)
 {
-    Point ret(a);
+	Point ret(a);
 
-    ret.x = x + a.x;
-    ret.y = y + a.y;
-    return ret;
+	ret.x = x + a.x;
+	ret.y = y + a.y;
+	return ret;
 }
 
 Point Point::operator-(Point const& a)
 {
-    Point ret(a);
+	Point ret(a);
 
-    ret.x = x - a.x;
-    ret.y = y - a.y;
-    return ret;
+	ret.x = x - a.x;
+	ret.y = y - a.y;
+	return ret;
 }
